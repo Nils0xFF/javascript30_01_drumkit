@@ -8,6 +8,12 @@ audioTracks.forEach(audio => {
   audio.addEventListener('pause', removeTransition);
 });
 
+const keyDivs = document.querySelectorAll('.key');
+keyDivs.forEach(key => {
+    key.addEventListener('click', clickSound);
+});
+
+
 function playSound(event) {
   // select the audio element with the keyCode
   const audio = document.querySelector(`audio[data-key='${event.keyCode}']`);
@@ -17,6 +23,12 @@ function playSound(event) {
   audio.currentTime = 0;
   // play the audio
   audio.play();
+}
+
+function clickSound(){
+    var keyPress = new Event('keypress');
+    keyPress.keyCode = this.dataset.key;
+    playSound(keyPress);
 }
 
 // adds the transion to the div
