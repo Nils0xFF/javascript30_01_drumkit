@@ -61,7 +61,11 @@
 
   <script>
     window.addEventListener('keydown', playSound);
-
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => {
+      key.addEventListener('transitionend', removeTransition);
+    });
+    
     function playSound(event) {
       // select the audio element with the keyCode
       const audio = document.querySelector(`audio[data-key='${event.keyCode}']`);
@@ -82,11 +86,6 @@
         this.classList.remove('playing');
       }
     }
-
-    const keys = document.querySelectorAll('.key');
-    keys.forEach(key => {
-      key.addEventListener('transitionend', removeTransition);
-    });
   </script>
 
 
